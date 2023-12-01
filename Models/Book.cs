@@ -5,25 +5,38 @@ namespace BookStore.Models;
 public class Book
 {
     public int Id { get; set; }
-    
-    [Microsoft.Build.Framework.Required] 
+
+    [Required(ErrorMessage = "Title is required")]
     public string Title { get; set; }
-    
-    [MaxLength(100)]
+
+    [MaxLength(100, ErrorMessage = "Description cannot exceed 100 characters")]
     public string Description { get; set; }
+
     public string Language { get; set; }
     
-    [Required, MaxLength(13)]
+    [Required(ErrorMessage = "Category is required")]
+    public int CategoryId { get; set; } 
+
+    public Category Category { get; set; } 
+
+    [Required(ErrorMessage = "ISBN is required"), MaxLength(13, ErrorMessage = "ISBN should be a maximum of 13 characters")]
+    [RegularExpression(@"^\d{10,13}$", ErrorMessage = "ISBN should contain only digits and be between 10 to 13 characters")]
     public string ISBN { get; set; }
-    
-    [Required,DataType(DataType.Date),Display(Name = "Date Published")]
+
+    [Required(ErrorMessage = "Date Published is required")]
+    [DataType(DataType.Date)]
+    [Display(Name = "Date Published")]
     public DateTime DatePublished { get; set; }
-    
-    [Required]
+
+    [Required(ErrorMessage = "Price is required")]
+    [Range(0, int.MaxValue, ErrorMessage = "Price must be a positive value")]
     public int Price { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "Author is required")]
     public string Author { get; set; }
+    
+    
+    
     
     
 }
