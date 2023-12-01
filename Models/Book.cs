@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookStore.Models;
 
@@ -29,6 +30,11 @@ public class Book
 
     [Required(ErrorMessage = "Author is required")]
     public string Author { get; set; }
+    
+    [NotMapped]
+    [Required(ErrorMessage = "Please select a file")]
+    [Display(Name = "Choose Image")]
+    public IFormFile ImagePath { get; set; }
     
     public virtual Category? Category { get; set; }
     
