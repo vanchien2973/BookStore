@@ -13,11 +13,6 @@ public class Book
     public string Description { get; set; }
 
     public string Language { get; set; }
-    
-    [Required(ErrorMessage = "Category is required")]
-    public int CategoryId { get; set; } 
-
-    public Category Category { get; set; } 
 
     [Required(ErrorMessage = "ISBN is required"), MaxLength(13, ErrorMessage = "ISBN should be a maximum of 13 characters")]
     [RegularExpression(@"^\d{10,13}$", ErrorMessage = "ISBN should contain only digits and be between 10 to 13 characters")]
@@ -35,7 +30,7 @@ public class Book
     [Required(ErrorMessage = "Author is required")]
     public string Author { get; set; }
     
-    
+    public virtual Category? Category { get; set; }
     
     
     

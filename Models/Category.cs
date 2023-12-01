@@ -12,4 +12,6 @@ public class Category
     public string Description { get; set; }
     
     public List<Book> Books { get; set; }
+    
+    public virtual ICollection<Book>? Book { get; set; } 
 }
