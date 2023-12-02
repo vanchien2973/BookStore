@@ -32,4 +32,5 @@ public class Book
     [Display(Name = "Choose Image")]
     public string ImagePath { get; set; }
     
+    // Up
 }

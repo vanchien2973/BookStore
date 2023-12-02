@@ -27,4 +27,6 @@ public class BookCreateViewModel
     [MaxLength(100, ErrorMessage = "Description cannot exceed 100 characters")]
     public string Description { get; set; }
     public IFormFile Image { get; set; }
+    
+    //Up
 }

@@ -9,5 +9,6 @@ public class Category
     [Required(ErrorMessage = "Category name is required")]
     public string Name { get; set; }
     
-    public virtual ICollection<Book>? Book { get; set; } 
+    public virtual ICollection<Book>? Book { get; set; }
+    //Up
 }
