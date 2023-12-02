@@ -1,24 +1,22 @@
+using Microsoft.Build.Framework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BookStore.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace BookStore.Models;
+namespace BookStore.ViewModels;
 
-public class Book
+public class BookCreateViewModel
 {
-    public int Id { get; set; }
-
-    [Required(ErrorMessage = "Title is required")]
+    public int Id  { get; set; }
     public string Title { get; set; }
     
-    [Required(ErrorMessage = "Author is required")]
     public string Author { get; set; }
     
-    [Required(ErrorMessage = "Date Published is required")]
     [DataType(DataType.Date)]
     [Display(Name = "Date Published")]
     public DateTime DatePublished { get; set; }
     
-    [Required(ErrorMessage = "Price is required")]
     [Range(0, int.MaxValue, ErrorMessage = "Price must be a positive value")]
     public int Price { get; set; }
     
@@ -28,8 +26,5 @@ public class Book
 
     [MaxLength(100, ErrorMessage = "Description cannot exceed 100 characters")]
     public string Description { get; set; }
-    
-    [Display(Name = "Choose Image")]
-    public string ImagePath { get; set; }
-    
+    public IFormFile Image { get; set; }
 }

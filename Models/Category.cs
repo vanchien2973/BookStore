@@ -8,10 +8,6 @@ public class Category
 
     [Required(ErrorMessage = "Category name is required")]
     public string Name { get; set; }
-
-    public string Description { get; set; }
-    
-    public List<Book> Books { get; set; }
     
     public virtual ICollection<Book>? Book { get; set; } 
 }
