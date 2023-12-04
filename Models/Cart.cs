@@ -28,10 +28,39 @@ public class Cart
         return new Cart(context) {Id = cartId};
     }
 
+    public CartItem GetCartItem(Book book)
+    {
+        return _context.CartItems.SingleOrDefault(ci => 
+            ci.Id == book.Id && ci.CartId == Id);   
+    }
+
+    public void AddToCart(Book book, int quantity)
+    {
+        var cartItem = GetCartItem(book);
+        if (cartItem == null)
+        {
+            cartItem = new CartItem
+            {
+                Book = book,
+                Quantity = quantity,
+                CartId = Id
+            };
+            _context.CartItems.Add(cartItem);
+        }
+        else
+        {
+            cartItem.Quantity += quantity;
+        }
+
+        _context.SaveChanges();
+    }
+
+
     public List<CartItem> GetAllCartItems()
     {
         return CartItems ??
-               (CartItems = _context.CartItems.Where(ci => ci.CartId == Id)
+               (CartItems = _context.CartItems
+                   .Where(ci => ci.CartId == Id)
                    .Include(ci => ci.Book)
                    .ToList());
                ;

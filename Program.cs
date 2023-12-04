@@ -10,8 +10,12 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
 // add cart service
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<Cart>(sp => Cart.GetCart(sp));
+
+
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
