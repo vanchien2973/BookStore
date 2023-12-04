@@ -6,10 +6,13 @@ namespace BookStore.Data;
 
 public class ApplicationDbContext : IdentityDbContext
 {
+
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
     }
     public DbSet<BookStore.Models.Book> Book { get; set; } = default!;
     public DbSet<BookStore.Models.Category> Category { get; set; } = default!;
+    public DbSet<BookStore.Models.CartItem> CartItems { get; set; } = default!;
+
 }

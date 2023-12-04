@@ -1,5 +1,6 @@
 using BookStore.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -30,7 +31,10 @@ public class Cart
     public List<CartItem> GetAllCartItems()
     {
         return CartItems ??
-               (CartItems = _context.CartItems.Where(ci => ci.CartId == Id)).ToList();
+               (CartItems = _context.CartItems.Where(ci => ci.CartId == Id)
+                   .Include(ci => ci.Book)
+                   .ToList());
+               ;
     }
 
     public int GetCartTotal()
