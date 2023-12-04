@@ -1,0 +1,50 @@
+@model BookStore.Models.Cart
+
+<h2>Cart</h2>
+
+@if (Model.CartItems.Count > 0)
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Book</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+            var bookTotal = item.Book.Price * item.Quantity;
+            <td>
+                <img src="~/images/@item.Book.ImagePath" style="height: 4em"/>
+            </td>
+            <td>
+                @item.Book.Title
+            </td>
+            <td>
+                @bookTotal.ToString("c")
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                
+            </td>
+        }
+        </tbody>
+        <tfoot>
+        <td>
+            
+        </td>
+        <td class="text-right">
+            <strong>Total: </strong>
+        </td>
+        <td>
+            <strong>@Model?.GetCartTotal().ToString("c")</strong>
+        </td>
+        </tfoot>
+    </table>
+}
