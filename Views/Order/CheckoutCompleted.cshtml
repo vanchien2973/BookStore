@@ -1,10 +1,8 @@
-@model BookStore.Models.Cart
+@model BookStore.Models.Order
 
-<h2>Cart</h2>
-
-@if (Model.CartItems.Count > 0)
-{
-    <div class="table-responsive">
+<h1>Thank you for your order!</h1>
+<h5 class="mt-5">Order Id: @Model.Id</h5>
+<div class="table-responsive">
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -12,11 +10,10 @@
                 <th>Book</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>Remove</th>
             </tr>
             </thead>
             <tbody>
-            @foreach (var item in Model.CartItems)
+            @foreach (var item in Model.OrderItems)
             {
                 var bookTotal = item.Book.Price * item.Quantity;
                 <tr>
@@ -33,9 +30,7 @@
                         @bookTotal.ToString("c")
                     </td>
                     <td>
-                        <a class="a-cleanup" asp-controller="Cart" asp-action="ReduceQuantity" asp-route-id="@item.Book.Id"><i class="fa-solid fa-minus"></i></a>
-                        <span>@item.Quantity</span>
-                        <a class="a-cleanup" asp-controller="Cart" asp-action="IncreaseQuantity" asp-route-id="@item.Book.Id"><i class="fa-solid fa-plus"></i></a>
+                        @item.Quantity
                     </td>
                     <td>
                         <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Book.Id" class="text-danger"><i class="fa-solid fa-xmark"></i></a>
@@ -50,17 +45,9 @@
                     <strong>Total: </strong>
                 </td>
                 <td>
-                    <strong>@Model?.GetCartTotal().ToString("c")</strong>
+                    <strong>@Model?.OrderTotal.ToString("c")</strong>
                 </td>
-                <td></td>
             </tr>
             </tfoot>
         </table>
-        <a class="a-cleanup" asp-controller="Order" asp-action="Checkout"><div class="btn btn-success float-right mr-5"><i class="fa-solid fa-trash-can"></i>Checkout</div></a>
-        <a class="a-cleanup" asp-controller="Cart" asp-action="ClearCart"><div class="btn btn-primary float-right mr-5"><i class="fa-solid fa-trash-can"></i>Empty Cart</div></a>
     </div>
-}
-else
-{
-    <h3>Cart is empty</h3>
-}

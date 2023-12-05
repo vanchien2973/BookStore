@@ -15,5 +15,5 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<BookStore.Models.Category> Category { get; set; } = default!;
     public DbSet<BookStore.Models.CartItem> CartItems { get; set; } = default!;
     public DbSet<BookStore.Models.OrderItem> OrderItems { get; set; } = default!;
-
+    public DbSet<BookStore.Models.Order> Orders { get; set; } = default!;
 }
