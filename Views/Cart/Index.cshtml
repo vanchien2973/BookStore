@@ -4,47 +4,62 @@
 
 @if (Model.CartItems.Count > 0)
 {
-    <table class="table">
-        <thead>
-        <tr>
-            <th></th>
-            <th>Book</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Remove</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.CartItems)
-        {
-            var bookTotal = item.Book.Price * item.Quantity;
-            <td>
-                <img src="~/images/@item.Book.ImagePath" style="height: 4em"/>
-            </td>
-            <td>
-                @item.Book.Title
-            </td>
-            <td>
-                @bookTotal.ToString("c")
-            </td>
-            <td>
-                @item.Quantity
-            </td>
-            <td>
-                
-            </td>
-        }
-        </tbody>
-        <tfoot>
-        <td>
-            
-        </td>
-        <td class="text-right">
-            <strong>Total: </strong>
-        </td>
-        <td>
-            <strong>@Model?.GetCartTotal().ToString("c")</strong>
-        </td>
-        </tfoot>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Book</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                var bookTotal = item.Book.Price * item.Quantity;
+                <tr>
+                    <td>
+                        <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id">
+                            <img src="~/images/@item.Book.ImagePath" style="height: 4em"/>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id">@item.Book.Title
+                        </a>
+                    </td>
+                    <td>
+                        @bookTotal.ToString("c")
+                    </td>
+                    <td>
+                        <a class="a-cleanup" asp-controller="Cart" asp-action="ReduceQuantity" asp-route-id="@item.Book.Id"><i class="fa-solid fa-minus"></i></a>
+                        <span>@item.Quantity</span>
+                        <a class="a-cleanup" asp-controller="Cart" asp-action="IncreaseQuantity" asp-route-id="@item.Book.Id"><i class="fa-solid fa-plus"></i></a>
+                    </td>
+                    <td>
+                        <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Book.Id" class="text-danger"><i class="fa-solid fa-xmark"></i></a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td class="text-right">
+                    <strong>Total: </strong>
+                </td>
+                <td>
+                    <strong>@Model?.GetCartTotal().ToString("c")</strong>
+                </td>
+                <td></td>
+            </tr>
+            </tfoot>
+        </table>
+        <a class="a-cleanup" asp-controller="Cart" asp-action="ClearCart"><div class="btn btn-primary float-right mr-5"><i class="fa-solid fa-trash-can"></i>Empty Cart</div></a>
+    </div>
+}
+else
+{
+    <h3>Cart is empty</h3>
 }

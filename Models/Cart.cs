@@ -31,8 +31,9 @@ public class Cart
     public CartItem GetCartItem(Book book)
     {
         return _context.CartItems.SingleOrDefault(ci => 
-            ci.Id == book.Id && ci.CartId == Id);   
+            ci.Book.Id == book.Id && ci.CartId == Id);   
     }
+
 
     public void AddToCart(Book book, int quantity)
     {
@@ -55,16 +56,78 @@ public class Cart
         _context.SaveChanges();
     }
 
+    public int ReduceQuantity(Book book)
+    {
+        var cartItem = GetCartItem(book);
+        var remaingQuantity = 0;
+        if (cartItem !=  null)
+        {
+            if (cartItem.Quantity > 1)
+            {
+                remaingQuantity = --cartItem.Quantity;
+            }
+            else
+            {
+                _context.CartItems.Remove(cartItem);
+            }
+        }
+        _context.SaveChanges();
+        return remaingQuantity;
+    }
+    
+    public int IncreaseQuantity(Book book)
+    {
+        var cartItem = GetCartItem(book);
+        var remainingQuantity = 0;
+
+        if (cartItem != null)
+        {
+            if (cartItem.Quantity > 0)
+            {
+                remainingQuantity = ++cartItem.Quantity;
+            }
+            else
+            {
+                _context.CartItems.Remove(cartItem);
+            }
+        }
+
+        _context.SaveChanges();
+        return remainingQuantity;
+    }
+
+
+    public void RemoveFromCart(Book book)
+    {
+        var cartItem = GetCartItem(book);
+        if (cartItem != null)
+        {
+            _context.CartItems.Remove(cartItem);            
+        }
+        _context.SaveChanges();
+    }
+
+    public void ClearCart()
+    {
+        var cartItems = _context.CartItems.Where(ci => ci.CartId == Id);
+        _context.CartItems.RemoveRange(cartItems);
+        _context.SaveChanges();
+    }
+    
 
     public List<CartItem> GetAllCartItems()
     {
-        return CartItems ??
-               (CartItems = _context.CartItems
-                   .Where(ci => ci.CartId == Id)
-                   .Include(ci => ci.Book)
-                   .ToList());
-               ;
+        if (CartItems == null) // Check if CartItems is null
+        {
+            CartItems = _context.CartItems
+                .Where(ci => ci.CartId == Id)
+                .Include(ci => ci.Book)
+                .ToList();
+        }
+    
+        return CartItems; // Return CartItems whether it was null or not
     }
+
 
     public int GetCartTotal()
     {
