@@ -62,25 +62,21 @@
             </a>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
+                <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="/Store">Store</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Store" asp-action="Index">Store</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="/Books">Book List</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Admin">Admin</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="faq.html">FAQs</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
                     </li>
                 </ul>
 
@@ -186,7 +182,7 @@
                         <div class="col-3">
                             <div class="card">
                                 <a asp-controller="Store" asp-action="Details" asp-route-id="@book.Id">
-                                    <img src="~/images/@book.ImagePath" width="300" height="300" style="object-fit: cover"/>
+                                    <img src="~/images/@book.ImagePath" width="294" height="250" style="object-fit: cover"/>
                                     <div class="card-body" style="height: 6em;">
                                         <h5 class="mb-3">@book.Title</h5>
                                     </div>
@@ -291,7 +287,7 @@
         // Use a setTimeout to delay hiding the menu
         setTimeout(function () {
             document.getElementById("signInMenu").style.display = "none";
-        }, 50navbar00); // Adjust the delay as needed
+        }, 5000); // Adjust the delay as needed
     }
 </script>
 </body>
