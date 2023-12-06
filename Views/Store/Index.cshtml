@@ -104,7 +104,7 @@
                     </div>
                     <div class="card-body">
                         <span class="card-text">@book.Price.ToString("c")</span>
-                        <a asp-action="" asp-route-id="@book.Id" class="btn btn-primary float-right store-btn">
+                        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-primary float-right store-btn">
                             <i class="fa-solid fa-cart-plus"></i>
                         </a>
                     </div>
