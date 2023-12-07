@@ -1,7 +1,7 @@
 @model IEnumerable<BookStore.Models.Book>
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<DefaultUser> SignInManager
+@inject UserManager<DefaultUser> UserManager
 <!doctype html>
 <html lang="en">
 <head>
