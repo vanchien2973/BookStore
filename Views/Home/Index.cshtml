@@ -13,54 +13,38 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Tooplate's Little Fashion</title>
-
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-icons.css" rel="stylesheet">
-
     <link rel="stylesheet" href="css/slick.css"/>
-
+    <link rel="stylesheet" href="css/footer.css"/>
     <link href="css/tooplate-little-fashion.css" rel="stylesheet">
     <!--
-
     Tooplate 2127 Little Fashion
-
     https://www.tooplate.com/view/2127-little-fashion
-
     -->
 </head>
-
 <body>
-
 <section class="preloader">
     <div class="spinner">
         <span class="sk-inner-circle"></span>
     </div>
 </section>
-
 <main>
-
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <a class="navbar-brand" href="/">
                 <strong><span>Book</span> Store</strong>
             </a>
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
@@ -79,7 +63,6 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
                     </li>
                 </ul>
-
                 <div class="d-none d-lg-block position-relative">
                     <a href="#" id="signInDropdown" onmouseenter="showSignInMenu()" onmouseleave="hideSignInMenu()" class="bi-person custom-icon me-3"></a>
                     <div id="signInMenu" class="dropdown-menu" style="display: none; position: absolute; top: 100%; right: 0; min-width: 200px; padding: 10px; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1); border: 1px solid #ccc; z-index: 100;">
@@ -106,76 +89,33 @@
                     </div>
                     <a href="/Cart" class="bi-bag custom-icon"></a>
                 </div>
-
-
             </div>
         </div>
     </nav>
-
     <section class="slick-slideshow">
         <div class="slick-custom">
-            <img src="images/slideshow/medium-shot-business-women-high-five.jpeg" class="img-fluid" alt="">
-
+            <img src="images/slides/slide01.png" class="img-fluid" alt="">
             <div class="slick-bottom">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-10">
-                            <h1 class="slick-title">Cool Fashion</h1>
-
-                            <p class="lead text-white mt-lg-3 mb-lg-5">Little fashion template comes with total 8 HTML pages provided by Tooplate website.</p>
-
-                            <a href="about.html" class="btn custom-btn">Learn more about us</a>
+                            <h1 class="slick-title">FPT Shop</h1>
+                            <a asp-area="" asp-controller="Store" asp-action="Index" class="btn custom-btn">Shop Now</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="slick-custom">
-            <img src="images/slideshow/team-meeting-renewable-energy-project.jpeg" class="img-fluid" alt="">
-
-            <div class="slick-bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-10">
-                            <h1 class="slick-title">New Design</h1>
-
-                            <p class="lead text-white mt-lg-3 mb-lg-5">Please share this Little Fashion template to your friends. Thank you for supporting us.</p>
-
-                            <a href="product.html" class="btn custom-btn">Explore products</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="slick-custom">
-            <img src="images/slideshow/two-business-partners-working-together-office-computer.jpeg" class="img-fluid" alt="">
-
-            <div class="slick-bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-10">
-                            <h1 class="slick-title">Talk to us</h1>
-
-                            <p class="lead text-white mt-lg-3 mb-lg-5">Tooplate is one of the best HTML CSS template websites for everyone.</p>
-
-                            <a href="contact.html" class="btn custom-btn">Work with us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <img src="images/slides/slide02.png" class="img-fluid" alt="">
         </div>
     </section>
-
     <section class="featured-product section-padding">
         <div class="container">
             <div class="row">
-
                 <div class="col-12 text-center">
                     <h2 class="mb-5">Featured Products</h2>
                 </div>
-
                 <div class="row">
                     @foreach (var book in Model)
                     {
@@ -204,73 +144,49 @@
             </div>
         </div>
     </section>
-
 </main>
-
-<footer class="site-footer">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-lg-3 col-10 me-auto mb-4">
-                <h4 class="text-white mb-3"><a href="index.html">Little</a> Fashion</h4>
-                <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>Little Fashion</strong></p>
-                <br>
-                <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a></p>
-            </div>
-
-            <div class="col-lg-5 col-8">
-                <h5 class="text-white mb-3">Sitemap</h5>
-
-                <ul class="footer-menu d-flex flex-wrap">
-                    <li class="footer-menu-item">
-                        <a href="about.html" class="footer-menu-link">Story</a>
-                    </li>
-
-                    <li class="footer-menu-item">
-                        <a href="#" class="footer-menu-link">Products</a>
-                    </li>
-
-                    <li class="footer-menu-item">
-                        <a href="#" class="footer-menu-link">Privacy policy</a>
-                    </li>
-
-                    <li class="footer-menu-item">
-                        <a href="#" class="footer-menu-link">FAQs</a>
-                    </li>
-
-                    <li class="footer-menu-item">
-                        <a href="#" class="footer-menu-link">Contact</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-lg-3 col-4">
-                <h5 class="text-white mb-3">Social</h5>
-
-                <ul class="social-icon">
-
-                    <li>
-                        <a href="#" class="social-icon-link bi-youtube"></a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-icon-link bi-whatsapp"></a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-icon-link bi-instagram"></a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-icon-link bi-skype"></a>
-                    </li>
-                </ul>
-            </div>
-
+<section>FPT Book Store</section>
+<footer class="footer-distributed">
+    <div class="footer-left">
+        <h3>Company<span>logo</span></h3>
+        <p class="footer-links">
+            <a href="#">Home</a>
+            ·
+            <a href="#">Blog</a>
+            ·
+            <a href="#">Pricing</a>
+            ·
+            <a href="#">About</a>
+            ·
+            <a href="#">Faq</a>
+            ·
+            <a href="#">Contact</a>
+        </p>
+        <p class="footer-company-name">Company Name © 2015</p>
+        <div class="footer-icons">
+            <a href="#">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a href="#">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#">
+                <i class="fa fa-linkedin"></i>
+            </a>
+            <a href="#">
+                <i class="fa fa-github"></i>
+            </a>
         </div>
     </div>
+    <div class="footer-right">
+        <p>Contact Us</p>
+        <form action="#" method="post">
+            <input type="text" name="email" placeholder="Email">
+            <textarea name="message" placeholder="Message"></textarea>
+            <button>Send</button>
+        </form>
+    </div>
 </footer>
-
 <!-- JAVASCRIPT FILES -->
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
@@ -282,7 +198,6 @@
     function showSignInMenu() {
         document.getElementById("signInMenu").style.display = "block";
     }
-
     function hideSignInMenu() {
         // Use a setTimeout to delay hiding the menu
         setTimeout(function () {
