@@ -4,7 +4,7 @@ using BookStore.Models;
 
 namespace BookStore.Data;
 
-public class ApplicationDbContext : IdentityDbContext
+public class ApplicationDbContext : IdentityDbContext<DefaultUser>
 {
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
