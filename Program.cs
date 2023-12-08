@@ -15,6 +15,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<Cart>(sp => Cart.GetCart(sp));
 
+try
+{
+    var serviceProvider = builder.Services.BuildServiceProvider();
+    UserRoleInitiazer.InitializeAsync(serviceProvider).Wait();
+}
+catch (Exception ex)
+{
+    var serviceProvider = builder.Services.BuildServiceProvider();
+    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "An error occurred while attempting to initialize");
+}
 
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();

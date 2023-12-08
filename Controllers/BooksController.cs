@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using BookStore.Data;
 using BookStore.Models;
 using BookStore.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BooksController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,7 +23,7 @@ namespace BookStore.Controllers
             _context = context;
             this.webHostEnvironment = webHostEnvironment;
         }
-
+        [AllowAnonymous]
         // GET: Books
         public async Task<IActionResult> Index()
         {
