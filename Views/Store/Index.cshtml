@@ -1,7 +1,7 @@
 @model IEnumerable<BookStore.Models.Book>
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<DefaultUser> SignInManager
-@inject UserManager<DefaultUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 <!doctype html>
 <html lang="en">
 <head>
@@ -89,6 +89,19 @@
 </nav>
 
 <h2 class="my-4">Store</h2>
+<form asp-action="Index" class="col-2 my-1 p-2">
+    <div>
+        Search Book
+        <div class="my-1">
+            <input type="text" name="searchString" placeholder="Title or Author" class="form-control-sm col-12"/>
+        </div>
+        <div class="my-1">
+            <input type="number" name="minPrice" step="1" placeholder="$min" class="form-control-sm col-5"/><input type="number" name="maxPrice" step="1" placeholder="$max" class="form-control-sm col-5"/>
+        </div>
+        <input type="Submit" value="filter" class="btn btn-primary btn-sm"/>
+        <a asp-action="Index" class="btn btn-secondary btn-sm float-right">Clear</a>
+    </div>
+</form>
 <div class="row">
     @foreach (var book in Model)
     {
@@ -122,6 +135,6 @@
         // Use a setTimeout to delay hiding the menu
         setTimeout(function () {
             document.getElementById("signInMenu").style.display = "none";
-        }, 50navbar00); // Adjust the delay as needed
+        }, 5000); // Adjust the delay as needed
     }
 </script>
