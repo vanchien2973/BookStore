@@ -25,13 +25,8 @@
       <Folder Include="Areas\" />
       <Folder Include="Data\Migrations\" />
       <Folder Include="Migrations\" />
-      <Folder Include="Pages\" />
       <Folder Include="wwwroot\images\" />
       <Folder Include="wwwroot\lib\fontawesome\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Views\Home\Admin\" />
     </ItemGroup>
 
 </Project>
