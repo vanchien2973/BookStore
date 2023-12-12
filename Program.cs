@@ -2,6 +2,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using BookStore.Data;
 using BookStore.Models;
+using BookStore.Services;
+using BookStore.Settings;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using SendGrid.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,25 +19,29 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<Cart>(sp => Cart.GetCart(sp));
 
-try
-{
-    var serviceProvider = builder.Services.BuildServiceProvider();
-    UserRoleInitiazer.InitializeAsync(serviceProvider).Wait();
-}
-catch (Exception ex)
-{
-    var serviceProvider = builder.Services.BuildServiceProvider();
-    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "An error occurred while attempting to initialize");
-}
 
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
-builder.Services.AddDefaultIdentity<DefaultUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>()
+builder.Services.AddDefaultIdentity<DefaultUser>(option => option.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders()
     .AddDefaultUI();
+
+//add confirm
+builder.Services.Configure<SendGridSettings>(builder.Configuration.GetSection("SendGridSettings"));
+builder.Services.AddSendGrid(options =>
+    options.ApiKey = builder.Configuration.GetSection("SendGridSettings").GetValue<string>("ApiKey")
+);
+builder.Services.AddScoped<IEmailSender, EmailSender>();
+
+//gg
+builder.Services.AddAuthentication()
+    .AddGoogle(options =>
+    {
+        options.ClientId = builder.Configuration.GetSection("GoogleAuthSettings").GetValue<string>("ClientId");
+        options.ClientSecret = builder.Configuration.GetSection("GoogleAuthSettings").GetValue<string>("ClientSecret");
+    });
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
