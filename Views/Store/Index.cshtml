@@ -15,6 +15,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/slick.css"/>
+    <link rel="stylesheet" href="css/myCss.css"/>
     <link href="css/tooplate-little-fashion.css" rel="stylesheet">
 </head>
 </html>
@@ -41,7 +42,7 @@
                 <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@book.Id">
                     <img src="~/images/@book.ImagePath" class="card-img-top card-img-custom"/>
                     <div class="card-body" style="height: 6em;">
-                        <h5 class="mb-3">@book.Title</h5>
+                        <h8 class="mb-3">@book.Title</h8>
                     </div>
                     <div class="card-body">
                         <span class="card-text">@book.Price.ToString("c")</span>
