@@ -80,9 +80,14 @@ namespace BookStore.Controllers
             {
                 if (await _userManager.IsInRoleAsync(user, role.Name))
                 {
-                    model.Users.Add(user.UserName);
+                    if (!string.IsNullOrEmpty(user.UserName)) // Check for null or empty UserName
+                    {
+                        model.Users.Add(user.UserName);
+                    }
+                    
                 }
             }
+
             return View(model);
         }
 
