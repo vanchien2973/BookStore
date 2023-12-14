@@ -60,15 +60,15 @@
                     @foreach (var book in Model)
                     {
                         <div class="col-3">
-                            <div class="card">
-                                <a asp-controller="Store" asp-action="Details" asp-route-id="@book.Id">
-                                    <img src="~/images/@book.ImagePath" width="294" height="250" style="object-fit: cover"/>
+                            <div class="card store-card">
+                                <a class="a-cleanup" asp-controller="Home" asp-action="Details" asp-route-id="@book.Id">
+                                    <img src="~/images/@book.ImagePath" class="card-img-top card-img-custom"/>
                                     <div class="card-body" style="height: 6em;">
-                                        <h5 class="mb-3">@book.Title</h5>
+                                        <h8 class="mb-3">@book.Title</h8>
                                     </div>
                                     <div class="card-body">
                                         <span class="card-text">@book.Price.ToString("c")</span>
-                                        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-primary float-right">
+                                        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-primary float-right store-btn">
                                             <i class="fa-solid fa-cart-plus"></i>
                                         </a>
                                     </div>
