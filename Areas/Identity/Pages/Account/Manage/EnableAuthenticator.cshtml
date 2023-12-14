@@ -49,5 +49,18 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    
+    <script type="text/javascript" src="~/lib/qrcodejs/qrcode.js"></script>
+    <script>
+    window.addEventListener("load", () => {
+      const uri = document.getElementById("qrCodeData").getAttribute('data-url');
+      new QRCode(document.getElementById("qrCode"),
+        {
+          text: uri,
+          width: 150,
+          height: 150
+        });
+    });
+    </script>
 }
