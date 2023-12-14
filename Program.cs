@@ -44,6 +44,15 @@ builder.Services.AddAuthentication()
     });
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication()
+    .AddFacebook(options =>
+    {
+        options.AppId = builder.Configuration.GetSection("FacebookAuthSettings").GetValue<string>("AppId");
+        options.AppSecret = builder.Configuration.GetSection("FacebookAuthSettings").GetValue<string>("AppSecret");
+    });
+
+
 builder.Services.AddRazorPages();
 // add session
 builder.Services.AddSession(options =>
