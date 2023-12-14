@@ -6,54 +6,46 @@
 
 <h1>Details</h1>
 
-<div>
-    <h4>Book</h4>
-    <hr/>
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DatePublished)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DatePublished)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+<section class="product-detail section-padding">
+    <div class="container">
+        <div class="row">
 
-        <dt class="col-sm-2">
-           Category Name
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
+            <div class="col-lg-6 col-12">
+                <dt class="col-sm-2">
+                    <img src="~/images/@Model.ImagePath" width="300" height="300" style="object-fit: cover"/>
+                </dt>
+            </div>
 
-        <dt class="col-sm-2">
-            <img src="~/images/@Model.ImagePath" width="250" height="250" style="object-fit: cover"/>
-        </dt>
-    </dl>
-</div>
-<div>
-    <a asp-action="Index" class="btn btn-warning"><i class="fa-solid fa-arrow-left"></i>Back</a>
-    <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-primary store-btn float-right mr-5"><i class="fa-solid fa-cart-plus"></i>Add to Cart</a>
-</div>
+            <div class="col-lg-6 col-12">
+                <div class="product-info d-flex">
+                    <div>
+                        <h2 class="product-title mb-0">@Html.DisplayFor(model => model.Title)</h2>
+                        <p class="product-p">@Html.DisplayFor(model => model.Author)</p>
+                        <div>
+                            <strong>Date Published:</strong>
+                            <span>@Html.DisplayFor(model => model.DatePublished)</span>
+                        </div>
+                        <div>
+                            <strong>Category Name:</strong>
+                            <span>@Html.DisplayFor(model => model.Category.Name)</span>
+                        </div>
+                    </div>
+
+                    <small class="product-price text-muted ms-auto mt-auto mb-5">@Html.DisplayFor(model => model.Price)$</small>
+                </div>
+
+                <div class="product-description">
+                    <strong class="d-block mt-4 mb-2">Description: </strong>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                </div>
+
+                <div class="product-cart-thumb row">
+                    <a asp-action="Index" class="btn btn-warning"><i class="fa-solid fa-arrow-left"></i>Back</a>
+                    <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-primary store-btn float-right mr-5"><i class="fa-solid fa-cart-plus"></i>Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

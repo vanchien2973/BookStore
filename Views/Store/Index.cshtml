@@ -25,7 +25,7 @@
     <div class="col-md-6">
         <form asp-action="Index" class="my-1 p-2">
             <div class="d-flex align-items-center">
-                <span class="ml-2">Search Book</span>
+                <span class="ml-2">Search Book: </span>
                 <input type="text" name="searchString" placeholder="Title or Author" class="form-control-sm"/>
                 <input type="Submit" value="Search" class="btn btn-primary btn-sm ml-2"/>
                 <a asp-action="Index" class="btn btn-secondary btn-sm ml-2">Clear</a>
@@ -35,7 +35,7 @@
     <div class="col-md-6">
         <form asp-action="Index" class="my-1 p-2">
             <div class="d-flex align-items-center justify-content-end">
-                <span class="ml-2">Filter Book</span>
+                <span class="ml-2">Filter Book: </span>
                 <div class="ml-2">
                     <input type="number" name="minPrice" step="1" placeholder="$min" class="form-control-sm"/>
                     <input type="number" name="maxPrice" step="1" placeholder="$max" class="form-control-sm"/>
