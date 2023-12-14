@@ -35,7 +35,7 @@ builder.Services.AddSendGrid(options =>
 );
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 
-//gg
+//Google
 builder.Services.AddAuthentication()
     .AddGoogle(options =>
     {
@@ -45,12 +45,26 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddControllersWithViews();
 
+//Facebook
 builder.Services.AddAuthentication()
     .AddFacebook(options =>
     {
         options.AppId = builder.Configuration.GetSection("FacebookAuthSettings").GetValue<string>("AppId");
         options.AppSecret = builder.Configuration.GetSection("FacebookAuthSettings").GetValue<string>("AppSecret");
     });
+
+//Update Cookie Configuration:
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+});
+
+// Update Cookie SameSite Policy
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.SameSite = SameSiteMode.None;
+});
+
 
 
 builder.Services.AddRazorPages();
@@ -74,6 +88,12 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+//Configure SameSite cookie policy
+app.UseCookiePolicy(new CookiePolicyOptions()
+{
+    MinimumSameSitePolicy = SameSiteMode.Lax
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
