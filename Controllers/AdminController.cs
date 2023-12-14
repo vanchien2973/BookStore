@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookStore.Data;
 using BookStore.Models;
 using BookStore.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Controllers
 {
@@ -15,11 +17,21 @@ namespace BookStore.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<DefaultUser> _userManager;
+        private readonly ApplicationDbContext _context;
 
-        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<DefaultUser> userManager)
+        public AdminController(RoleManager<IdentityRole> roleManager, UserManager<DefaultUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _context = context;
+            
+        }
+        
+        public async Task<IActionResult> Index()
+        {
+            return _context.Users != null ? 
+                View(await _context.Users.ToListAsync()) :
+                Problem("Entity set 'ApplicationDbContext.Users'  is null.");
         }
 
         [HttpGet]

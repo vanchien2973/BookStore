@@ -6,6 +6,7 @@ using BookStore.Data;
 using BookStore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Controllers
 {
@@ -19,6 +20,13 @@ namespace BookStore.Controllers
         {
             _context = context;
             _cart = cart;
+        }
+        
+        public async Task<IActionResult> Index()
+        {
+            return _context.Orders != null ? 
+                View(await _context.Orders.ToListAsync()) :
+                Problem("Entity set 'ApplicationDbContext.Users'  is null.");
         }
         
         public IActionResult Checkout()

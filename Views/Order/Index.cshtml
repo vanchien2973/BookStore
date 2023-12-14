@@ -1,0 +1,44 @@
+@model IEnumerable<BookStore.Models.Order>
+
+@{
+    ViewData["Title"] = "List Order";
+}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderItems)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderPlaced)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderTotal)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderItems)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderPlaced)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderTotal)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
