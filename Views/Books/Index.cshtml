@@ -4,7 +4,7 @@
     ViewData["Title"] = "List Books";
 }
 
-<br/><br/><br/><br/>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -23,6 +23,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
         Category Name
@@ -47,6 +50,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.Name)
