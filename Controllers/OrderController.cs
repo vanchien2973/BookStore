@@ -35,7 +35,7 @@ namespace BookStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Checkout(Order order)
+        public IActionResult Checkout(Order order, string fullName, string phoneNumber, string address)
         {
             var cartItems = _cart.GetAllCartItems();
             _cart.CartItems = cartItems;
@@ -46,7 +46,11 @@ namespace BookStore.Controllers
 
             if (ModelState.IsValid)
             {
-                CreateOrder(order);
+                order.FullName = fullName;
+                order.PhoneNumber = phoneNumber;
+                order.Address = address;
+
+                CreateOrder(order, fullName, phoneNumber, address);
                 _cart.ClearCart();
                 return View("CheckoutCompleted", order);
             }
@@ -59,9 +63,12 @@ namespace BookStore.Controllers
             return View(order);
         }
 
-        public void CreateOrder(Order order)
+        public void CreateOrder(Order order, string fullName, string phoneNumber, string address)
         {
             order.OrderPlaced = DateTime.Now;
+            order.FullName = fullName;
+            order.PhoneNumber = phoneNumber;
+            order.Address = address;
             var cartItems = _cart.CartItems;
             foreach (var item in cartItems)
             {

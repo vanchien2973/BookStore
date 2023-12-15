@@ -69,19 +69,19 @@ namespace BookStore.Migrations
                     table.PrimaryKey("PK_Category", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderTotal = table.Column<int>(type: "int", nullable: false),
-                    OrderPlaced = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                });
+            // migrationBuilder.CreateTable(
+            //     name: "Orders",
+            //     columns: table => new
+            //     {
+            //         Id = table.Column<int>(type: "int", nullable: false)
+            //             .Annotation("SqlServer:Identity", "1, 1"),
+            //         OrderTotal = table.Column<int>(type: "int", nullable: false),
+            //         OrderPlaced = table.Column<DateTime>(type: "datetime2", nullable: false)
+            //     },
+            //     constraints: table =>
+            //     {
+            //         table.PrimaryKey("PK_Orders", x => x.Id);
+            //     });
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -356,8 +356,8 @@ namespace BookStore.Migrations
             migrationBuilder.DropTable(
                 name: "Book");
 
-            migrationBuilder.DropTable(
-                name: "Orders");
+            // migrationBuilder.DropTable(
+            //     name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Category");

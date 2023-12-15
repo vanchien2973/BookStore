@@ -6,7 +6,9 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th></th>
+                <th>FullName</th>
+                <th>Phone Number</th>
+                <th>Address</th>
                 <th>Book</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -17,6 +19,9 @@
             {
                 var bookTotal = item.Book.Price * item.Quantity;
                 <tr>
+                    <td>@Model.FullName</td>
+                    <td>@Model.PhoneNumber</td>
+                    <td>@Model.Address</td>
                     <td>
                         <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id">
                             <img src="~/images/@item.Book.ImagePath" style="height: 4em"/>
