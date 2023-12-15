@@ -19,6 +19,7 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         var eFContext = _context.Book.Include(o => o.Category);
+        
         return View(await eFContext.ToListAsync());
               
     }

@@ -4,6 +4,7 @@
     ViewData["Title"] = "List Order";
 }
 
+<br/><br/><br/><br/><br/>
 <table class="table">
     <thead>
     <tr>
@@ -37,6 +38,15 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OrderItems)
