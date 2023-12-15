@@ -4,12 +4,12 @@
     ViewData["Title"] = "List Books";
 }
 
-<h1>Index</h1>
+<h1>List Books</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
+<table class="table table-bordered text-center">
     <thead>
     <tr>
         <th>
@@ -25,21 +25,20 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
         Category Name
         <th>
-            @Html.DisplayNameFor(model => model.ImagePath)
+            Image
         </th>
-        <th></th>
+        <th>
+            Function
+        </th>
     </tr>
     </thead>
     <tbody>
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td style="max-width: 300px; text-overflow: ellipsis;">
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
@@ -52,18 +51,21 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
-                <img src="~/images/@item.ImagePath" width="250" height="250" style="object-fit: cover"/>
+                <img src="~/images/@item.ImagePath" width="100" height="100" style="object-fit: cover"/>
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                </a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
             </td>
         </tr>
     }

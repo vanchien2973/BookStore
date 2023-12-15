@@ -4,17 +4,15 @@
     ViewBag.Title = "Cart";
 }
 
-<br/><br/><br/><br/>
-
 <h3>Cart</h3>
 
 @if (Model.CartItems.Count > 0)
 {
     <div class="table-responsive">
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead>
             <tr>
-                <th></th>
+                <th>Image</th>
                 <th>Book</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -32,38 +30,49 @@
                         </a>
                     </td>
                     <td>
-                        <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id">@item.Book.Title
+                        <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.Id">
+                            @item.Book.Title
                         </a>
                     </td>
                     <td>
                         @bookTotal $
                     </td>
                     <td>
-                        <a class="a-cleanup" asp-controller="Cart" asp-action="ReduceQuantity" asp-route-id="@item.Book.Id"><i class="fa-solid fa-minus"></i></a>
+                        <a class="a-cleanup" asp-controller="Cart" asp-action="ReduceQuantity" asp-route-id="@item.Book.Id">
+                            <i class="fa-solid fa-circle-minus"></i>
+                        </a>
                         <span>@item.Quantity</span>
-                        <a class="a-cleanup" asp-controller="Cart" asp-action="IncreaseQuantity" asp-route-id="@item.Book.Id"><i class="fa-solid fa-plus"></i></a>
+                        <a class="a-cleanup" asp-controller="Cart" asp-action="IncreaseQuantity" asp-route-id="@item.Book.Id">
+                            <i class="fa-solid fa-circle-plus"></i>
+                        </a>
                     </td>
                     <td>
-                        <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Book.Id" class="text-danger"><i class="fa-solid fa-xmark"></i></a>
+                        <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Book.Id" class="text-danger">
+                            <i class="fa-regular fa-trash-can btn-danger fs-5"></i>
+                        </a>
                     </td>
                 </tr>
             }
             </tbody>
             <tfoot>
             <tr>
+                <td></td>
                 <td colspan="2"></td>
                 <td class="text-right">
                     <strong>Total: </strong>
                 </td>
                 <td>
-                    <strong>@Model?.GetCartTotal().ToString("c")</strong>
+                    <strong>@Model?.GetCartTotal() $</strong>
                 </td>
-                <td></td>
             </tr>
             </tfoot>
         </table>
-        <a class="a-cleanup" asp-controller="Order" asp-action="Checkout"><div class="btn btn-success float-right mr-5"><i class="fa-solid fa-trash-can"></i>Checkout</div></a>
-        <a class="a-cleanup" asp-controller="Cart" asp-action="ClearCart"><div class="btn btn-primary float-right mr-5"><i class="fa-solid fa-trash-can"></i>Empty Cart</div></a>
+        <a class="a-cleanup" asp-controller="Order" asp-action="Checkout">
+            <div class="btn btn-success float-right mr-5"><i class="fa-solid fa-trash-can"></i>Checkout</div>
+        </a>
+        <a class="a-cleanup" asp-controller="Cart" asp-action="ClearCart">
+            <div class="btn btn-primary float-right mr-5"><i class="fa-solid fa-trash-can"></i>Empty Cart</div>
+        </a>
     </div>
 }
 else

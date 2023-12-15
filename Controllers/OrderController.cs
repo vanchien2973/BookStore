@@ -24,9 +24,9 @@ namespace BookStore.Controllers
         
         public async Task<IActionResult> Index()
         {
-            return _context.Orders != null ? 
-                View(await _context.Orders.ToListAsync()) :
-                Problem("Entity set 'ApplicationDbContext.Users'  is null.");
+            var orders = _context.Orders.Include(o => o.OrderItems);
+            return View(await orders.ToListAsync());
+              
         }
         
         public IActionResult Checkout()

@@ -3,12 +3,13 @@
 <h1>Thank you for your order!</h1>
 <h5 class="mt-5">Order Id: @Model.Id</h5>
 <div class="table-responsive">
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead>
             <tr>
                 <th>FullName</th>
                 <th>Phone Number</th>
                 <th>Address</th>
+                <th>Image</th>
                 <th>Book</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -32,25 +33,25 @@
                         </a>
                     </td>
                     <td>
-                        @bookTotal.ToString("c")
+                        @bookTotal $
                     </td>
                     <td>
                         @item.Quantity
-                    </td>
-                    <td>
-                        <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-id="@item.Book.Id" class="text-danger"><i class="fa-solid fa-xmark"></i></a>
                     </td>
                 </tr>
             }
             </tbody>
             <tfoot>
             <tr>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td colspan="2"></td>
                 <td class="text-right">
                     <strong>Total: </strong>
                 </td>
                 <td>
-                    <strong>@Model?.OrderTotal.ToString("c")</strong>
+                    <strong>@Model?.OrderTotal $</strong>
                 </td>
             </tr>
             </tfoot>

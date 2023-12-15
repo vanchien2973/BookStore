@@ -4,8 +4,9 @@
     ViewData["Title"] = "List Order";
 }
 
-<br/><br/><br/><br/><br/>
-<table class="table">
+<h1>List Order</h1>
+
+<table class="table table-bordered text-center">
     <thead>
     <tr>
         <th>
@@ -21,7 +22,7 @@
             @Html.DisplayNameFor(model => model.Address)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrderItems)
+            OrderItems
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OrderPlaced)
@@ -29,7 +30,6 @@
         <th>
             @Html.DisplayNameFor(model => model.OrderTotal)
         </th>
-        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -49,7 +49,25 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrderItems)
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>BookId</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var orderItem in item.OrderItems)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => orderItem.BookId)</td>
+                            <td>@Html.DisplayFor(modelItem => orderItem.Quantity)</td>
+                            <td>@Html.DisplayFor(modelItem => orderItem.Price)</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OrderPlaced)

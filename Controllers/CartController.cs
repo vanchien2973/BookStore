@@ -36,7 +36,7 @@ namespace BookStore.Controllers
                 _cart.AddToCart(selectedBook, 1);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult RemoveFromCart(int id)
