@@ -29,16 +29,17 @@
                 <div class="row">
                     @foreach (var book in Model)
                     {
-                        <div class="col-3">
+                        <div class="col-3 mt-3">
                             <div class="card store-card">
                                 <a class="a-cleanup" asp-controller="Home" asp-action="Details" asp-route-id="@book.Id">
                                     <img src="~/images/@book.ImagePath" class="card-img-top card-img-custom"/>
                                     <div class="card-body" style="height: 6em;">
                                         <h8 class="mb-3">@book.Title</h8>
+                                        <p class="text-author">Author: @book.Author</p>
                                     </div>
-                                    <div class="card-body">
-                                        <span class="card-text">@book.Price.ToString("c")</span>
-                                        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-primary float-right store-btn">
+                                    <div class="card-body d-flex justify-content-between align-items-center">
+                                        <span class="card-text">Price: @book.Price $</span>
+                                        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@book.Id" class="btn btn-light store-btn-1">
                                             <i class="fa-solid fa-cart-plus"></i>
                                         </a>
                                     </div>
@@ -47,7 +48,7 @@
                         </div>
                     }
                 </div>
-                <div class="col-12 text-center">
+                <div class="col-12 text-center mt-4">
                     <a href="/Store" class="view-all">View All Books</a>
                 </div>
             </div>

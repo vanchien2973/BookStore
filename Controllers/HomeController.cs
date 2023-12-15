@@ -20,8 +20,12 @@ public class HomeController : Controller
     {
         var eFContext = _context.Book.Include(o => o.Category);
         
-        return View(await eFContext.ToListAsync());
-              
+    
+        var allBooks = await eFContext.ToListAsync();
+
+        var randomBooks = allBooks.OrderBy(x => Guid.NewGuid()).Take(4).ToList();
+    
+        return View(randomBooks);
     }
     
     public async Task<IActionResult> Details(int? id)
